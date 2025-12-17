@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Store - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <span class="menu-btn">☰</span>
+            <img src="IMG-20251217-MYLOGO.jpg" alt="Logo" id="navLogo">
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+        <div class="nav-right">
+            <span class="profile-icon" onclick="logout()">Logout</span>
+            <button id="cartBtn">Cart (0)</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to My Store</h1>
+                <p>Desc: High quality products at best prices.</p>
+            </div>
+        </section>
+
+        <div id="productGrid" class="product-grid">
+            </div>
+    </main>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <h3>Shopping Cart</h3>
+            <div id="cartItems"></div>
+            <div class="cart-total">Total: ₹<span id="totalPrice">0</span></div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            <button class="close-btn" onclick="toggleCart()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
