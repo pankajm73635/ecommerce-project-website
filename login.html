@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - My Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <img src="IMG-20251217-WA0024.jpg" alt="Logo" class="login-logo">
+        <h2>User Login</h2>
+        <div class="input-group">
+            <label>User ID:</label>
+            <input type="text" id="userId" placeholder="Enter User ID">
+        </div>
+        <div class="input-group">
+            <label>Password:</label>
+            <input type="password" id="password" placeholder="Enter Password">
+        </div>
+        <button class="main-btn" onclick="login()">Dashboard</button>
+        <p class="signup-text">New user? <a href="#">Sign Up</a></p>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById('userId').value;
+            if(user.trim() !== "") {
+                localStorage.setItem("userLoggedIn", "true");
+                window.location.href = "index.html";
+            } else {
+                alert("Please enter a User ID");
+            }
+        }
+    </script>
+</body>
+</html>
