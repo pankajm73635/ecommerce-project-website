@@ -1,4 +1,11 @@
-// आपका डेटा जैसा आपने माँगा था
+// --- 1. SECURITY CHECK (सबसे ऊपर) ---
+// यह कोड चेक करेगा कि यूजर ने लॉगिन किया है या नहीं
+if (localStorage.getItem("userLoggedIn") !== "true") {
+    // अगर लॉगिन नहीं है, तो तुरंत login.html पर भेज देगा
+    window.location.href = "login.html";
+}
+
+// --- 2. PRODUCT DATA ---
 const products = [
     { id: 1, name: "Shoes", price: 1999, img: "Shoe.jpg" },
     { id: 2, name: "T-shirt", price: 799, img: "T-shirt.jpg" },
@@ -7,10 +14,11 @@ const products = [
 
 let cart = [];
 
-// प्रोडक्ट्स लोड करना
+// --- 3. DISPLAY PRODUCTS ---
 function renderProducts(items) {
     const grid = document.getElementById('productGrid');
-    if(!grid) return;
+    if(!grid) return; // अगर ग्रिड नहीं मिला तो कोड रुक जाएगा
+    
     grid.innerHTML = items.map(p => `
         <div class="product-card">
             <img src="${p.img}" alt="${p.name}">
@@ -21,7 +29,7 @@ function renderProducts(items) {
     `).join('');
 }
 
-// कार्ट में जोड़ना
+// --- 4. CART LOGIC ---
 function addToCart(id) {
     const product = products.find(p => p.id === id);
     cart.push(product);
@@ -32,19 +40,26 @@ function updateCartUI() {
     document.getElementById('cartBtn').innerText = `Cart (${cart.length})`;
     const cartItems = document.getElementById('cartItems');
     const total = cart.reduce((sum, item) => sum + item.price, 0);
-    cartItems.innerHTML = cart.map(item => `<p>${item.name} - ₹${item.price}</p>`).join('');
+    
+    cartItems.innerHTML = cart.map(item => `
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+            <span>${item.name}</span>
+            <span>₹${item.price}</span>
+        </div>
+    `).join('');
+    
     document.getElementById('totalPrice').innerText = total;
 }
 
-// सर्च फ़िल्टर
+// --- 5. SEARCH & LOGOUT & CART TOGGLE ---
 function filterProducts() {
     const term = document.getElementById('searchInput').value.toLowerCase();
     const filtered = products.filter(p => p.name.toLowerCase().includes(term));
     renderProducts(filtered);
 }
 
-// लॉगिन चेक और अन्य फंक्शन्स
 function logout() {
+    // लॉगिन डेटा साफ़ करें और लॉगिन पेज पर भेजें
     localStorage.removeItem("userLoggedIn");
     window.location.href = "login.html";
 }
@@ -53,19 +68,10 @@ function toggleCart() {
     document.getElementById('cartModal').classList.toggle('cart-visible');
 }
 
-function checkout() {
-    alert("Thank you for shopping! Order placed successfully.");
-    cart = [];
-    updateCartUI();
-    toggleCart();
-}
-
+// --- 6. INITIALIZE ---
 document.getElementById('cartBtn').onclick = toggleCart;
 
-// शुरुआत में प्रोडक्ट्स दिखाएँ
+// जब पेज पूरी तरह लोड हो जाए
 window.onload = () => {
-    if(!localStorage.getItem("userLoggedIn") && window.location.pathname.includes("index.html")) {
-        window.location.href = "login.html";
-    }
     renderProducts(products);
 };
