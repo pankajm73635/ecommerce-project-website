@@ -3,33 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - My Store</title>
+    <title>Login - Pankaj Store</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* लॉगिन पेज को सुंदर बनाने के लिए खास स्टाइल */
+        body {
+            background-color: #f0f2f5; /* हल्का ग्रे बैकग्राउंड */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+        }
+        /* लोगो का साइज कंट्रोल करने के लिए */
+        .login-card img {
+            width: 120px; /* अब यह फोटो की तरह बहुत बड़ा नहीं दिखेगा */
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff3385; /* गुलाबी बॉर्डर */
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .login-card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box; /* इससे बॉक्स बाहर नहीं निकलेगा */
+        }
+        .dash-btn {
+            background: #ff3385;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .dash-btn:hover {
+            background: #e62e76;
+        }
+    </style>
 </head>
-<body class="login-page">
-    <div class="login-box">
-        <img src="IMG-20251217-MYLOGO.jpg" alt="Logo" class="login-logo">
+<body>
+
+    <div class="login-card">
+        <img src="IMG-20251217-MYLOGO.jpg" alt="Store Logo">
+        
         <h2>User Login</h2>
+        
         <div class="input-group">
-            <label>User ID:</label>
-            <input type="text" id="userId" placeholder="Enter User ID">
+            <label>User ID</label>
+            <input type="text" id="userId" placeholder="Enter your ID">
         </div>
+        
         <div class="input-group">
-            <label>Password:</label>
+            <label>Password</label>
             <input type="password" id="password" placeholder="Enter Password">
         </div>
-        <button class="main-btn" onclick="login()">Dashboard</button>
-        <p class="signup-text">New user? <a href="#">Sign Up</a></p>
+        
+        <button class="dash-btn" onclick="handleLogin()">Dashboard</button>
+        
+        <p style="margin-top: 15px; font-size: 13px; color: #888;">
+            New user? <a href="#" style="color: #ff3385; text-decoration: none;">Sign Up</a>
+        </p>
     </div>
 
     <script>
-        function login() {
+        function handleLogin() {
             const user = document.getElementById('userId').value;
             if(user.trim() !== "") {
                 localStorage.setItem("userLoggedIn", "true");
-                window.location.href = "index.html";
+                window.location.href = "index.html"; // होम पेज पर भेज देगा
             } else {
-                alert("Please enter a User ID");
+                alert("Please enter User ID");
             }
         }
     </script>
