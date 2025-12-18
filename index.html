@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital Store</title>
+    <title>My Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="nav-left">
-            <img src="IMG-20251217-WA0024.jpg" alt="Logo" id="navLogo">
+            <img src="IMG-20251217-MYLOGO.jpg" alt="Logo" id="navLogo">
+            <span style="font-weight: bold; margin-left: 10px;">My Store</span>
         </div>
+        
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
         </div>
+
         <div class="nav-right">
-            <button id="cartBtn" style="background:white; color:#ff3385; border:none; padding:8px 15px; border-radius:20px; font-weight:bold; cursor:pointer;">Cart (0)</button>
-            <span onclick="logout()" style="margin-left:15px; cursor:pointer;">Logout 🚪</span>
+            <button id="cartBtn">Cart (0)</button>
+            <span class="logout-link" onclick="logout()" style="cursor:pointer; margin-left: 15px;">Logout 🚪</span>
         </div>
     </header>
 
@@ -25,22 +28,34 @@
             </div>
     </main>
 
+    <div id="cartModal" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button onclick="toggleCart()" class="close-cart">×</button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-footer">
+            <p>Total: ₹<span id="totalPrice">0</span></p>
+            <button onclick="checkout()" class="checkout-btn">Checkout on WhatsApp</button>
+        </div>
+    </div>
+
     <footer>
-        <h3>Pankaj Digital Store</h3>
-        <div class="footer-contact">
-            <p><strong>Email:</strong> pankajmaurya7877@zohomail.in</p>
-            <p><strong>Contact No:</strong> +91 7045585298</p>
-            <p>&copy; 2025 All Rights Reserved</p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About Our Store</h4>
+                <p>High-quality products delivered to your doorstep.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Details</h4>
+                <p>📧 <strong>Email:</strong> pankajmaurya7877@zohomail.in</p>
+                <p>📞 <strong>Contact No:</strong> +91 7045585298</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 My Store. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
-
-    <div id="cartModal" style="display:none; position:fixed; right:0; top:0; width:300px; height:100%; background:white; z-index:2000; padding:20px; box-shadow:-5px 0 15px rgba(0,0,0,0.2);">
-        <h3>Your Cart</h3>
-        <div id="cartItems"></div>
-        <hr>
-        <p>Total: ₹<span id="totalPrice">0</span></p>
-        <button onclick="toggleCart()" style="width:100%; padding:10px; background:#333; color:white; border:none; border-radius:5px; margin-top:10px;">Close</button>
-    </div>
 
     <script src="script.js"></script>
 </body>
