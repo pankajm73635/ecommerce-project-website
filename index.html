@@ -3,57 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Pankaj Digital Store</title>
+    <style>
+        /* --- CSS START (Ab logo bada nahi dikhega) --- */
+        :root { --pink: #ff3385; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); }
+        
+        header { 
+            background: var(--pink); color: white; padding: 10px 20px; 
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* LOGO SIZE CONTROL */
+        #navLogo { 
+            height: 50px !important; width: 50px !important; 
+            border-radius: 50%; object-fit: cover; 
+            background: white; border: 2px solid white;
+        }
+
+        .nav-left { display: flex; align-items: center; }
+        .search-box input { padding: 8px 15px; border-radius: 20px; border: none; width: 200px; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .product-card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .product-card img { width: 100%; height: 180px; object-fit: contain; }
+        .product-card button { background: var(--pink); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+
+        footer { background: #222; color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
+        .footer-section p { margin: 5px 0; color: #ccc; }
+        .pink-text { color: var(--pink); font-weight: bold; }
+
+        /* Cart Sidebar */
+        .cart-sidebar { display: none; position: fixed; right: 0; top: 0; width: 300px; height: 100%; background: white; z-index: 2000; padding: 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+        /* --- CSS END --- */
+    </style>
 </head>
 <body>
     <header>
         <div class="nav-left">
-            <img src="IMG-20251217-MYLOGO.jpg" alt="Logo" id="navLogo">
+            <img src="IMG-20251217-WA0024.jpg" alt="Logo" id="navLogo">
             <span style="font-weight: bold; margin-left: 10px;">My Store</span>
         </div>
         
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterProducts()">
         </div>
 
         <div class="nav-right">
-            <button id="cartBtn">Cart (0)</button>
-            <span class="logout-link" onclick="logout()" style="cursor:pointer; margin-left: 15px;">Logout 🚪</span>
+            <button id="cartBtn" style="background:white; color:#ff3385; border:none; padding:8px 15px; border-radius:20px; font-weight:bold; cursor:pointer;">Cart (0)</button>
+            <span onclick="logout()" style="margin-left:15px; cursor:pointer;">Logout 🚪</span>
         </div>
     </header>
 
     <main>
-        <div id="productGrid" class="product-grid">
-            </div>
+        <div id="productGrid" class="product-grid"></div>
     </main>
 
     <div id="cartModal" class="cart-sidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <button onclick="toggleCart()" class="close-cart">×</button>
-        </div>
+        <h3>Shopping Cart</h3>
         <div id="cartItems"></div>
-        <div class="cart-footer">
-            <p>Total: ₹<span id="totalPrice">0</span></p>
-            <button onclick="checkout()" class="checkout-btn">Checkout on WhatsApp</button>
-        </div>
+        <hr>
+        <p>Total: ₹<span id="totalPrice">0</span></p>
+        <button onclick="checkout()" style="width:100%; padding:12px; background:#ff3385; color:white; border:none; border-radius:25px; cursor:pointer; font-weight:bold;">Checkout on WhatsApp</button>
+        <button onclick="toggleCart()" style="width:100%; padding:10px; background:#eee; border:none; border-radius:25px; margin-top:10px; cursor:pointer;">Close</button>
     </div>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>About Our Store</h4>
-                <p>High-quality products delivered to your doorstep.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Details</h4>
-                <p>📧 <strong>Email:</strong> pankajmaurya7877@zohomail.in</p>
-                <p>📞 <strong>Contact No:</strong> +91 7045585298</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 My Store. All Rights Reserved.</p>
-            </div>
+        <div class="footer-section">
+            <h4>Pankaj Digital Store</h4>
+            <p>📧 Email: <span class="pink-text">pankajmaurya7877@zohomail.in</span></p>
+            <p>📞 Contact: <span class="pink-text">7045585298</span></p>
+            <p>&copy; 2025 All Rights Reserved</p>
         </div>
     </footer>
 
