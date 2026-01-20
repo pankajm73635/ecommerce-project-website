@@ -3,60 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login - Pankaj Store</title>
+    <style>
+        body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        .login-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 320px; }
+        /* लोगो का साइज फिक्स - अब यह बड़ा नहीं होगा */
+        .login-card img { width: 120px !important; height: 120px !important; border-radius: 50%; border: 4px solid #ff3385; margin-bottom: 20px; object-fit: cover; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        .dash-btn { background: #ff3385; color: white; border: none; padding: 12px; width: 100%; border-radius: 25px; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="nav-left">
-            <img src="IMG-20251217-MYLOGO.jpg" alt="Logo" id="navLogo">
-            <span style="font-weight: bold; margin-left: 10px;">My Store</span>
+    <div class="login-card">
+        <img src="IMG-20251217-WA0024.jpg" alt="Logo">
+        <h2>User Login</h2>
+        <div class="input-group">
+            <input type="text" id="userId" placeholder="Enter User ID">
         </div>
-        
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Enter Password">
         </div>
-
-        <div class="nav-right">
-            <button id="cartBtn">Cart (0)</button>
-            <span class="logout-link" onclick="logout()" style="cursor:pointer; margin-left: 15px;">Logout 🚪</span>
-        </div>
-    </header>
-
-    <main>
-        <div id="productGrid" class="product-grid">
-            </div>
-    </main>
-
-    <div id="cartModal" class="cart-sidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <button onclick="toggleCart()" class="close-cart">×</button>
-        </div>
-        <div id="cartItems"></div>
-        <div class="cart-footer">
-            <p>Total: ₹<span id="totalPrice">0</span></p>
-            <button onclick="checkout()" class="checkout-btn">Checkout on WhatsApp</button>
-        </div>
+        <button class="dash-btn" onclick="handleLogin()">Dashboard</button>
     </div>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>About Our Store</h4>
-                <p>High-quality products delivered to your doorstep.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Details</h4>
-                <p>📧 <strong>Email:</strong> pankajmaurya7877@zohomail.in</p>
-                <p>📞 <strong>Contact No:</strong> +91 7045585298</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 My Store. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script>
+        function handleLogin() {
+            const user = document.getElementById('userId').value;
+            if(user.trim() !== "") {
+                localStorage.setItem("userLoggedIn", "true");
+                window.location.href = "index.html";
+            } else { alert("Please enter User ID"); }
+        }
+    </script>
 </body>
 </html>
